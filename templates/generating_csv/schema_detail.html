@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Sample schemas
+  <a href="{% url 'generating_csv:schema-update' pk=schema.pk%}" class="btn btn-primary link-to-page">Edit scheme</a>
+  </h1>
+  <table class="table">
+  <tr>
+    <th>#</th>
+    <th>Column name</th>
+    <th>Column type</th>
+  </tr>
+
+    {% for column in schema.columns.all %}
+      <tr>
+        <td>{{ column.pk }}</td>
+        <td>{{ column.name }}</td>
+        <td>{{ column.type }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
