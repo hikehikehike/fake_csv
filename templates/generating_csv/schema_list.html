@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Data schemas
+  <a href="#" class="btn btn-primary link-to-page">New scheme</a>
+  </h1>
+  <table class="table">
+  <tr>
+    <th>#</th>
+    <th>Title</th>
+    <th>Modified</th>
+    <th>Actions</th>
+  </tr>
+    {% for schema in schema_list %}
+      <tr>
+        <td>{{ schema.pk}}</td>
+        <td>{{ schema.title}}</td>
+        <td>{{ schema.modified }}</td>
+        <td><a href="#">Edit scheme</a> <a href="#">Delete</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
