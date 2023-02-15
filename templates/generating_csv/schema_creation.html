@@ -23,7 +23,7 @@
         <td>{{ val.name }}</td>
         <td>{{ val.type }}</td>
         <td>{{ val.order }}</td>
-        <td><a href="{% url 'generating_csv:schema-detail' pk=schema.pk %}">Delete</a></td>
+        <td><a href="{% url 'generating_csv:columns-delete' pk=val.pk %}">Delete</a></td>
       </tr>
     {% endfor %}
   </table>

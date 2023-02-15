@@ -40,6 +40,7 @@ def create_schema_and_columns(request):
 
 class ColumnsDeleteViews(LoginRequiredMixin, generic.DeleteView):
     model = Column
+    success_url = reverse_lazy("generating_csv:schema-creation")
 
 
 class SchemaListViews(LoginRequiredMixin, generic.ListView):
