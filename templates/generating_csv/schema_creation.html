@@ -6,8 +6,6 @@
   <form action="" method="post" novalidate>
     {% csrf_token %}
     {{ schema_forms }}
-
-
     <input type="submit" value="Submit" class="btn btn-primary">
   </form>
 
@@ -17,6 +15,7 @@
     <th>Column name</th>
     <th>Type</th>
     <th>Order</th>
+    <th>Actions</th>
   </tr>
 
     {% for val in column %}
@@ -24,6 +23,7 @@
         <td>{{ val.name }}</td>
         <td>{{ val.type }}</td>
         <td>{{ val.order }}</td>
+        <td><a href="{% url 'generating_csv:schema-detail' pk=schema.pk %}">Delete</a></td>
       </tr>
     {% endfor %}
   </table>

@@ -27,11 +27,19 @@ def create_schema_and_columns(request):
             columns_form.save()
             return HttpResponseRedirect(reverse("generating_csv:schema-creation"))
 
-        schema_form = SchemaForms(request.POST)
-        if schema_form.is_valid():
-            print("asd")
-            schema_form.save()
+        schema_form = request.POST.copy()
+        schema_form["columns"] = Column.objects.all()
+        form = SchemaForms(schema_form)
+
+        if form.is_valid():
+            form.save()
             return HttpResponseRedirect(reverse("generating_csv:schema-list"))
+
+    return HttpResponseRedirect(reverse("generating_csv:schema-list"))  # add errors
+
+
+class ColumnsDeleteViews(LoginRequiredMixin, generic.DeleteView):
+    model = Column
 
 
 class SchemaListViews(LoginRequiredMixin, generic.ListView):

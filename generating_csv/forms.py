@@ -6,7 +6,11 @@ from generating_csv.models import Schema, Column
 class SchemaForms(forms.ModelForm):
     class Meta:
         model = Schema
-        fields = ["title"]
+        fields = ["title", "columns"]
+
+        widgets = {
+            "columns": forms.HiddenInput(),
+        }
 
 
 class ColumnForms(forms.ModelForm):
