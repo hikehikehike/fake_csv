@@ -3,7 +3,7 @@
 {% block content %}
   <h1>
     Data schemas
-  <a href="#" class="btn btn-primary link-to-page">New scheme</a>
+  <a href="{% url 'generating_csv:schema-creation' %}" class="btn btn-primary link-to-page">New schema</a>
   </h1>
   <table class="table">
   <tr>
@@ -12,12 +12,13 @@
     <th>Modified</th>
     <th>Actions</th>
   </tr>
+
     {% for schema in schema_list %}
       <tr>
-        <td>{{ schema.pk}}</td>
-        <td>{{ schema.title}}</td>
+        <td>{{ schema.pk }}</td>
+        <td><a href="{% url 'generating_csv:schema-detail' pk=schema.pk %}">{{ schema.title }}</a></td>
         <td>{{ schema.modified }}</td>
-        <td><a href="#">Edit scheme</a> <a href="#">Delete</a></td>
+        <td><a href="{% url 'generating_csv:schema-update' pk=schema.pk %}">Edit scheme</a> <a href="{% url 'generating_csv:schema-delete' pk=schema.pk %}">Delete</a></td>
       </tr>
     {% endfor %}
   </table>
