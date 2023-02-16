@@ -31,3 +31,10 @@ class Schema(models.Model):
 
     def __str__(self):
         return f"Title: {self.title}, modified: {self.modified}"
+
+
+class CSVData(models.Model):
+    modified = models.TimeField(auto_now=True)
+    schema = models.ForeignKey(Schema, on_delete=models.CASCADE)
+    csv_file = models.URLField(max_length=255)
+    rows = models.IntegerField(validators=[MinValueValidator(0)])

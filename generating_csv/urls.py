@@ -7,6 +7,7 @@ from generating_csv.views import (
     SchemaDeleteViews,
     create_schema_and_columns,
     ColumnsDeleteViews,
+    create_csv_file,
 )
 
 urlpatterns = [
@@ -16,6 +17,7 @@ urlpatterns = [
     path("schema/<int:pk>/update/", SchemaUpdateViews.as_view(), name="schema-update"),
     path("schema/<int:pk>/delete/", SchemaDeleteViews.as_view(), name="schema-delete"),
     path("columns/<int:pk>/delete/", ColumnsDeleteViews.as_view(), name="columns-delete"),
+    path("csv/creation/", create_csv_file, name="csv-creation")
 ]
 
 app_name = "generating_csv"

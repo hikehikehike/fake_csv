@@ -35,7 +35,14 @@ def create_schema_and_columns(request):
             form.save()
             return HttpResponseRedirect(reverse("generating_csv:schema-list"))
 
-    return HttpResponseRedirect(reverse("generating_csv:schema-list"))  # add errors
+    return HttpResponseRedirect(reverse("generating_csv:schema-list"))  # TODO: add errors
+
+
+@login_required
+def create_csv_file(request):
+    if request.method == "POST":
+        pass
+
 
 
 class ColumnsDeleteViews(LoginRequiredMixin, generic.DeleteView):

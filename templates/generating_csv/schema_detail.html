@@ -20,4 +20,25 @@
       </tr>
     {% endfor %}
   </table>
+  <h1>
+    Data sets
+  <a href="{% url 'generating_csv:schema-update' pk=schema.pk%}" class="btn btn-primary link-to-page">Generate data</a>
+  </h1>
+  <table class="table">
+  <tr>
+    <th>#</th>
+    <th>Created</th>
+    <th>Status</th>
+    <th>Actions</th>
+  </tr>
+
+    {% for column in schema.columns.all %}
+      <tr>
+        <td>{{ column.pk }}</td>
+        <td>{{ column.name }}</td>
+        <td>{{ column.type }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
 {% endblock %}
