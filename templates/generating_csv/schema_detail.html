@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
 {% block content %}
   <h1>
     Sample schemas
-  <a href="{% url 'generating_csv:schema-update' pk=schema.pk%}" class="btn btn-primary link-to-page">Edit scheme</a>
+  <a href="{% url 'generating_csv:schema-update' pk=schema.pk%}" >Edit scheme</a>
   </h1>
   <table class="table">
   <tr>
@@ -22,8 +23,13 @@
   </table>
   <h1>
     Data sets
-  <a href="{% url 'generating_csv:schema-update' pk=schema.pk%}" class="btn btn-primary link-to-page">Generate data</a>
   </h1>
+    <form action="" method="post" novalidate>
+      {% csrf_token %}
+      {{ csv_data_forms }}
+      <input type="submit" value="Submit" class="btn btn-primary">
+    </form>
+
   <table class="table">
   <tr>
     <th>#</th>
@@ -32,11 +38,13 @@
     <th>Actions</th>
   </tr>
 
-    {% for column in schema.columns.all %}
+
+    {% for data in schema.csvdata_set.all %}
       <tr>
-        <td>{{ column.pk }}</td>
-        <td>{{ column.name }}</td>
-        <td>{{ column.type }}</td>
+        <td>{{ data.pk }}</td>
+        <td>{{ data.modified }}</td>
+        <td> Need Add </td>
+        <td> media/file.csv </td>
       </tr>
     {% endfor %}
   </table>
