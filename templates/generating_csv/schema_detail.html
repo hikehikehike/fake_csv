@@ -27,7 +27,7 @@
     <form action="" method="post" novalidate>
       {% csrf_token %}
       {{ csv_data_forms }}
-      <input type="submit" value="Submit" class="btn btn-primary">
+      <input type="submit" value="Generate data" class="btn btn-primary">
     </form>
 
   <table class="table">
@@ -39,12 +39,12 @@
   </tr>
 
 
-    {% for data in schema.csvdata_set.all %}
+    {% for data in csv_data %}
       <tr>
         <td>{{ data.pk }}</td>
         <td>{{ data.modified }}</td>
         <td> Need Add </td>
-        <td> media/file.csv </td>
+        <td><a id='download' href="{{ data.csv_file.url }}" class="text-primary">Download</a></td>
       </tr>
     {% endfor %}
   </table>
