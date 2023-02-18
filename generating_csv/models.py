@@ -36,5 +36,5 @@ class Schema(models.Model):
 class CSVData(models.Model):
     modified = models.TimeField(auto_now=True)
     schema = models.ForeignKey(Schema, on_delete=models.CASCADE)
-    csv_file = models.URLField(max_length=255)
+    csv_file = models.FileField()
     rows = models.IntegerField(validators=[MinValueValidator(0)])
