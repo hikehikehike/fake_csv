@@ -6,7 +6,7 @@ from generating_csv.models import Schema, Column, CSVData
 class SchemaForms(forms.ModelForm):
     class Meta:
         model = Schema
-        fields = ["title", "columns"]
+        fields = ["title", "separator", "string_character", "columns"]
 
         widgets = {
             "columns": forms.HiddenInput(),
@@ -16,7 +16,7 @@ class SchemaForms(forms.ModelForm):
 class ColumnForms(forms.ModelForm):
     class Meta:
         model = Column
-        fields = "__all__"
+        fields = ["name", "type", "order", "start_num", "end_num"]
 
 
 class CSVDataForms(forms.ModelForm):
@@ -27,4 +27,5 @@ class CSVDataForms(forms.ModelForm):
         widgets = {
             "schema": forms.HiddenInput(),
             "csv_file": forms.HiddenInput(),
+            "status": forms.HiddenInput(),
         }

@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "generating_csv",
     "crispy_forms",
-    "faker"
+    "faker",
+    "crispy_bootstrap5",
 ]
 
 MIDDLEWARE = [
@@ -106,7 +107,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = "generating_csv.User"
 
-CRISPY_TEMPLATE_PACK = "bootstrap4"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
 LOGIN_REDIRECT_URL = "/"
 
 

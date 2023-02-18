@@ -41,6 +41,7 @@ def create_schema_and_columns(request):
 
 @login_required
 def create_csv_file(request, pk):
+    """"""  # TODO: add docstring
     if request.method == "GET":
         column = Column.objects.all()
         schema = Schema.objects.get(pk=pk)
