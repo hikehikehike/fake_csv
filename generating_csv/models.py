@@ -42,7 +42,7 @@ class Schema(models.Model):
     separator = models.CharField(
         max_length=2,
         choices=SeparatorChoices.choices,
-        default="'"
+        default=","
     )
     string_character = models.CharField(
         max_length=2,

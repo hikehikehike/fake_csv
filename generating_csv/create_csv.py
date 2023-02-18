@@ -28,9 +28,16 @@ def create_csv(rows, schema):
 
     columns = schema.columns.all()
     field_names = [column.name for column in columns]
+    separator = schema.separator
+    string_character = schema.string_character
 
     with open(f"media/{file_name}", "w", newline="") as csv_file:
-        writer = csv.DictWriter(csv_file, fieldnames=field_names)  # TODO: add sepatarot, string character
+        writer = csv.DictWriter(
+            csv_file,
+            fieldnames=field_names,
+            delimiter=separator,
+            quotechar=string_character,
+        )
         writer.writeheader()
 
         for _ in range(int(rows)):
