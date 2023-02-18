@@ -5,8 +5,9 @@ from django.shortcuts import render
 from django.views import generic
 from django.urls import reverse_lazy, reverse
 
+from generating_csv.create_csv import create_csv
 from generating_csv.forms import SchemaForms, ColumnForms, CSVDataForms
-from generating_csv.models import Schema, Column
+from generating_csv.models import Schema, Column, CSVData
 
 
 @login_required
@@ -43,21 +44,32 @@ def create_csv_file(request, pk):
     if request.method == "GET":
         column = Column.objects.all()
         schema = Schema.objects.get(pk=pk)
+        csv_data = CSVData.objects.filter(schema=schema)
         context = {
             "csv_data_forms": CSVDataForms(),
             "column": column,
             "schema": schema,
+            "csv_data": csv_data,
         }
         return render(request, "generating_csv/schema_detail.html", context=context)
     if request.method == "POST":
         rows = request.POST.get("rows")
         schema = Schema.objects.get(pk=pk)
+        csv_data = CSVData.objects.filter(schema=schema)
+
+        create_csv(rows, schema)
 
         context = {
             "csv_data_forms": CSVDataForms(),
             "schema": schema,
+            "csv_data": csv_data,
         }
         return render(request, "generating_csv/schema_detail.html", context=context)
+
+
+def download_data(request, pk):
+    if request.method == "GET":
+        csv_data = CSVData.objects.get(pk=pk)
 
 
 class ColumnsDeleteViews(LoginRequiredMixin, generic.DeleteView):
