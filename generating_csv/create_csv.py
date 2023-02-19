@@ -16,7 +16,7 @@ def generate_fake_data(columns):
             "Email": fake.email(),
             "Phone_number": fake.phone_number(),
             "Address": fake.address(),
-            "Integer": fake.random_int(column.start_num, column.end_num),  # TODO: add start value & end value
+            "Integer": fake.random_int(column.start_num, column.end_num),
         }
         fake_dict[column.name] = type_faker_dic[column.type]
 

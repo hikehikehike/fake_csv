@@ -36,12 +36,11 @@ def create_schema_and_columns(request):
             form.save()
             return HttpResponseRedirect(reverse("generating_csv:schema-list"))
 
-    return HttpResponseRedirect(reverse("generating_csv:schema-list"))  # TODO: add errors
+    return HttpResponseRedirect(reverse("generating_csv:schema-list"))
 
 
 @login_required
 def create_csv_file(request, pk):
-    """"""  # TODO: add docstring
     if request.method == "GET":
         column = Column.objects.all()
         schema = Schema.objects.get(pk=pk)
@@ -68,11 +67,6 @@ def create_csv_file(request, pk):
         return render(request, "generating_csv/schema_detail.html", context=context)
 
 
-def download_data(request, pk):
-    if request.method == "GET":
-        csv_data = CSVData.objects.get(pk=pk)
-
-
 class ColumnsDeleteViews(LoginRequiredMixin, generic.DeleteView):
     model = Column
     success_url = reverse_lazy("generating_csv:schema-creation")
@@ -92,6 +86,3 @@ class SchemaUpdateViews(LoginRequiredMixin, generic.UpdateView):
 class SchemaDeleteViews(LoginRequiredMixin, generic.DeleteView):
     model = Schema
     success_url = reverse_lazy("generating_csv:schema-list")
-
-
-
