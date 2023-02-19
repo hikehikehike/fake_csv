@@ -4,7 +4,7 @@ Django online service for generating CSV files with fake data
 
 ## Check it out!
 
-[Project deployed to PythonAnywhere](https://www.pythonanywhere.com/)
+[Project deployed to PythonAnywhere](http://hikehikehike.pythonanywhere.com/)
 
 **Test user**
 
