@@ -19,14 +19,20 @@ def create_schema_and_columns(request):
             "column_forms": ColumnForms(),
             "column": column,
         }
-        return render(request, "generating_csv/schema_creation.html", context=context)
+        return render(
+            request,
+            "generating_csv/schema_creation.html",
+            context=context
+        )
 
     if request.method == "POST":
 
         columns_form = ColumnForms(request.POST)
         if columns_form.is_valid():
             columns_form.save()
-            return HttpResponseRedirect(reverse("generating_csv:schema-creation"))
+            return HttpResponseRedirect(
+                reverse("generating_csv:schema-creation")
+            )
 
         schema_form = request.POST.copy()
         schema_form["columns"] = Column.objects.all()
@@ -51,7 +57,11 @@ def create_csv_file(request, pk):
             "schema": schema,
             "csv_data": csv_data,
         }
-        return render(request, "generating_csv/schema_detail.html", context=context)
+        return render(
+            request,
+            "generating_csv/schema_detail.html",
+            context=context
+        )
     if request.method == "POST":
         rows = request.POST.get("rows")
         schema = Schema.objects.get(pk=pk)
@@ -64,7 +74,11 @@ def create_csv_file(request, pk):
             "schema": schema,
             "csv_data": csv_data,
         }
-        return render(request, "generating_csv/schema_detail.html", context=context)
+        return render(
+            request,
+            "generating_csv/schema_detail.html",
+            context=context
+        )
 
 
 class ColumnsDeleteViews(LoginRequiredMixin, generic.DeleteView):
